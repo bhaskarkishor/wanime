@@ -1,4 +1,5 @@
 import colors from 'vuetify/es5/util/colors'
+import BASE_URL from './baseurl.js'
 
 export default {
   // Global page headers (https://go.nuxtjs.dev/config-head)
@@ -16,7 +17,7 @@ export default {
   },
 
   env: {
-    baseUrl: process.env.BASE_URL || 'http://localhost:3000'
+    baseUrl: BASE_URL
   },
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
@@ -40,11 +41,7 @@ export default {
   ],
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
-  publicRuntimeConfig: {
-    axios: {
-      baseURL: 'http://localhost:3000'
-    }
-  },
+
 
   // Vuetify module configuration (https://go.nuxtjs.dev/config-vuetify)
   vuetify: {
