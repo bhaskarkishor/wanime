@@ -12,10 +12,15 @@
     "@justalk/anime-api": "^3.0.0",
     "@nuxtjs/axios": "^5.12.2",
     "@nuxtjs/pwa": "^3.3.3",
+    "@nuxtjs/vuetify": "^1.11.2",
+    "cheerio": "^1.0.0-rc.5",
     "core-js": "^3.6.5",
+    "cors": "^2.8.5",
     "debounce": "^1.2.0",
     "nuxt": "^2.14.6",
-    "@nuxtjs/vuetify": "^1.11.2"
+    "request": "^2.88.2",
+    "uuid": "^8.3.2",
+    "vue-video-player": "^5.0.2"
   },
   "devDependencies": {
     "eslint-config-prettier": "^6.12.0",

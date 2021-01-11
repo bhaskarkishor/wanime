@@ -1,42 +1,22 @@
-<template>    
-  <v-card
-    color="red lighten-2"
-    dark
-  >
+<template>
+<div>
     <v-card-title class="headline red lighten-3">
       Search Your Favourite Anime
     </v-card-title>
-    <!-- <v-autocomplete
-        v-model="model"
-        :items="items"
-        :loading="isLoading"
-        :search-input.sync="search"
-        color="white"
-        hide-no-data
-        hide-selected
-        item-text="title"
-        item-value="title"
-        label="Type here"
-        placeholder="Start typing to Search"
-        prepend-icon="mdi-pokeball"
-        return-object
-      ></v-autocomplete> -->
     <v-card-text>
       <v-text-field
-        v-model="search"
-        :items="items"
+        v-model="searchText"
         :loading="isLoading"
         color="white"
         hide-no-data
         hide-selected
-        item-text="title"
-        item-value="title"
         label="Type here"
         placeholder="Start typing to Search"
         prepend-icon="mdi-pokeball"
-        v-on:keyup.enter="searchQuery(search)"
+        v-on:keyup.enter="searchQuery(searchText)"
       ></v-text-field>
-      <v-btn v-on:click="searchQuery(search)">Search</v-btn>
+      <v-btn v-on:click="searchQuery(searchText)">Search</v-btn>
+
     </v-card-text>
     <v-divider></v-divider>
     <v-expand-transition>
@@ -45,14 +25,15 @@
         class="red lighten-3"
       >
         <v-list-item
-          v-for="(field, i) in items"
+          v-for="(item, i) in items"
           :key="i"
-          :to="path(field.title)"
+          :to="path(item)"
           router
         >
           <v-list-item-content>
-            <v-list-item-title v-text="field.title"></v-list-item-title>
-            <v-list-item-subtitle v-text="field.synopsis"></v-list-item-subtitle>
+            <v-img :lazy-src="item.image" height="40" width="40" />
+            <v-list-item-title v-text="item.title"></v-list-item-title>
+            <v-list-item-subtitle v-text="item.id"></v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
       </v-list>
@@ -70,121 +51,69 @@
         </v-icon>
       </v-btn>
     </v-card-actions> -->
-  </v-card>
+  </div>
 </template>
 
 <script>
-import debounce from 'debounce'
+//import debounce from 'debounce'
 
-  export default {
-    data: () => ({
-      synopsisLimit: 200,
-      entries: [],
-      isLoading: false,
-      model: null,
-      search: null,
-    }),
+export default {
+  layout:'default2',
+  data: () => ({
+    synopsisLimit: 200,
+    searchResult: [],
+    isLoading: false,
+    resultPage:1,
+    searchText: null,
+  }),
 
-    watch:{
-      // search(val){
-      //  // Items have already been loaded
-      //   if (this.items.length > 0) return
 
-      //   // Items have already been requested
-      //   if (this.isLoading) return
+  computed: {
+    items () {
+      return this.searchResult.map(entry => {
+        const title = entry.title
+        let image = entry.image
+        let id = entry.id
+        return Object.assign( { id, title, image },)
+      })
+    }
+  },
 
-      //   this.isLoading = true
-
-      //   console.info('Api requested')
-      //   // Lazily load input items
-      //   fetch('https://kitsu.io/api/edge/anime?' + new URLSearchParams({
-      //       'filter[text]': `${val}`,
-      //       'fields[anime]': 'titles,synopsis'
-      //     }),
-      //     {
-      //       method:'GET',
-      //       headers:{
-      //         'Accept': 'application/vnd.api+json',
-      //         'Content-Type': 'application/vnd.api+json'
-      //       }
-      //     })
-      //     .then(res => res.json())
-      //     .then(res => {
-      //       console.log(res);
-      //       this.entries = res.data;
-      //     })
-      //     .catch(err => {
-      //       console.log(err)
-      //     })
-      //     .finally(() => (this.isLoading = false))
-      // }
+  methods: {
+    path(val){
+      return `${val.id}`
     },
+    searchQuery: function(val){
 
-    computed: {
-      fields () {
-        if (!this.model) return []
+      // Items have already been requested
+      if (this.isLoading) return
 
-        return Object.keys(this.model).map(key => {
-          return {
-            key,
-            value: this.model[key] || 'n/a',
+      this.isLoading = true
+
+      console.info('fetching anime list ')
+      // Lazily load input items
+      fetch(`/api/gogoanime/search/${val}/${this.resultPage}`,
+        {
+          method:'GET',
+          headers:{
+            'Accept': 'application/vnd.api+json',
+            'Content-Type': 'application/vnd.api+json'
           }
         })
-      },
-      items () {
-        return this.entries.map(entry => {
-          const synopsis = entry.attributes.synopsis.length > this.synopsisLimit
-            ? entry.attributes.synopsis.slice(0, this.synopsisLimit) + '...'
-            : entry.attributes.synopsis
-          const title = entry.attributes.titles.en_jp
-          var slug = entry.attributes.slug
-          return Object.assign( { synopsis, title, slug },)
+        .then(res => res.json())
+        .then(res => {
+          console.log(res);
+          this.searchResult = res.results;
         })
-      }      
-    },
-
-    methods: {
-      path(val){
-        //console.log(val,"dome");
-        return `stream?anime=${val}`
-      },
-      searchQuery: debounce( function(val){
-        // Items have already been loaded
-        if (this.items.length > 0) return
-
-        // Items have already been requested
-        if (this.isLoading) return
-
-        this.isLoading = true
-
-        console.info('fetching anime list ')
-        // Lazily load input items
-        fetch('https://kitsu.io/api/edge/anime?' + new URLSearchParams({
-            'filter[text]': `${val}`,
-            'fields[anime]': 'titles,synopsis,slug',
-            'page[limit]':20
-          }),
-          {
-            method:'GET',
-            headers:{
-              'Accept': 'application/vnd.api+json',
-              'Content-Type': 'application/vnd.api+json'
-            }
-          })
-          .then(res => res.json())
-          .then(res => {
-            console.log(res);
-            this.entries = res.data;
-          })
-          .catch(err => {
-            console.log(err)
-          })
-          .finally(() => (this.isLoading = false))
-      },10)
-    },
-  }
+        .catch(err => {
+          console.log(err)
+        })
+        .finally(() => (this.isLoading = false))
+    }
+  },
+}
 </script>
 
 <style>
 
-</style>  
+</style>
