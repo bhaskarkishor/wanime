@@ -1,1 +1,1 @@
-module.exports = 'http://wanime.herokuapp.com'
+module.exports = 'http://localhost:3000'

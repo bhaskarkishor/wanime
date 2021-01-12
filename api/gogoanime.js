@@ -160,12 +160,12 @@ async function getLink(Link) {
   });
 }
 
-app.get("/watching/:id/:episode", (req, res) => {
+app.get("/watching/:anime/:episode", (req, res) => {
   let link = "";
   let nl = [];
-  var id = req.params.id;
+  var anime = req.params.anime;
   var episode = req.params.episode;
-  url = `${baseURL + id}-episode-${episode}`;
+  url = `${baseURL + anime}-episode-${episode}`;
   rs(url, async (err, resp, html) => {
     if (!err) {
       try {
@@ -180,7 +180,7 @@ app.get("/watching/:id/:episode", (req, res) => {
             try {
               var $ = cheerio.load(html);
               $("a").each((i, e) => {
-                if (e.attribs.download === "") {
+                if (e.attribs.download === "" || e.attribs.target==="_blank") {
                   nl.push(e.attribs.href);
                 }
               });

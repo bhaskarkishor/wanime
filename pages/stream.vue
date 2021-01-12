@@ -1,5 +1,4 @@
 <template>
-  <v-container class="bg d-flex justify-center">
     <videoPlayer  class="video-player-box"
                  ref="videoPlayer"
                  :options="playerOptions"
@@ -20,7 +19,6 @@
                  @ready="playerReadied">
   </videoPlayer>
 
-  </v-container>
 </template>
 
 <script>
@@ -34,8 +32,10 @@ export default {
     return {
       playerOptions: {
         // videojs options
-        height:360,
-        muted: true,
+        fluid:true,
+        //width:"100%",
+        //height:400,
+        muted: false,
         language: 'en',
         playbackRates: [0.7, 1.0, 1.5, 2.0],
         sources: [{
@@ -103,4 +103,10 @@ export default {
 
 <style>
 @import url('video.js/dist/video-js.css');
+.video-js .vjs-big-play-button {
+  top: 50%;
+  left: 50%;
+  margin-left: -1.5em;
+  margin-top: -1em
+}
 </style>

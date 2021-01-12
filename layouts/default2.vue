@@ -19,7 +19,12 @@
           v-for="link in links"
           :key="link"
         >
-          {{ link }}
+         <div v-if="$route.path=='/'">
+        Search
+        </div>
+        <div v-else>
+          <v-img src="w.png" height="40" width="40"/>
+        </div>
         </v-tab>
       </v-tabs>
 

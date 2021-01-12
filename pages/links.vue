@@ -12,7 +12,7 @@
       </h1>
 
       <v-list>
-        <v-list-item v-for="(link,i) in streamingLinks" :key="i" :to="play(link)" router>
+        <v-list-item v-for="(link,i) in streamingLinks" :key="i" v-on:click="play(link)">
           <v-list-item-action-text>{{link}}</v-list-item-action-text>
         </v-list-item>
       </v-list>
@@ -37,9 +37,7 @@ export default {
   },
   methods:{
     play(link){
-      return '/stream?'+new URLSearchParams({
-        'link':link
-      })
+      window.open(link,'_blank')
     }
   },
   mounted(){

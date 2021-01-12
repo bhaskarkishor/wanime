@@ -10,6 +10,8 @@
         color="white"
         hide-no-data
         hide-selected
+        autofocus
+        single-line
         label="Type here"
         placeholder="Start typing to Search"
         prepend-icon="mdi-pokeball"
@@ -31,9 +33,15 @@
           router
         >
           <v-list-item-content>
-            <v-img :lazy-src="item.image" height="40" width="40" />
-            <v-list-item-title v-text="item.title"></v-list-item-title>
-            <v-list-item-subtitle v-text="item.id"></v-list-item-subtitle>
+            <v-row>
+              <v-col cols="2">
+                <v-img lazy-src="w.png" :src="item.image" height="100" width="100" />
+              </v-col>
+              <v-col cols="10">
+                <v-list-item-title v-text="item.title"></v-list-item-title>
+                <v-list-item-subtitle v-text="item.id"></v-list-item-subtitle>
+              </v-col>
+            </v-row>
           </v-list-item-content>
         </v-list-item>
       </v-list>
