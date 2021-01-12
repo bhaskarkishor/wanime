@@ -17,7 +17,7 @@ export default {
   },
 
   env: {
-    baseUrl: BASE_URL
+    baseUrl: BASE_URL || 'http://localhost:3000'
   },
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
