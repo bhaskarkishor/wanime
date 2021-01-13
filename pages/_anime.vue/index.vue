@@ -44,7 +44,7 @@ export default {
     }
   },
   async asyncData({route}){
-    return await fetch(`${process.env.baseUrl}/api/gogoanime/details/${route.params.anime}`,
+    return await fetch(`/api/gogoanime/details/${route.params.anime}`,
       {
         method:'GET',
         headers:{

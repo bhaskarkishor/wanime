@@ -41,7 +41,7 @@ export default {
     }
   },
   mounted(){
-    fetch(`${process.env.baseUrl}/api/gogoanime/watching/${this.$route.query.anime_id}/${this.$route.query.episode}`,
+    fetch(`/api/gogoanime/watching/${this.$route.query.anime_id}/${this.$route.query.episode}`,
     {
       method:'GET',
       headers:{
