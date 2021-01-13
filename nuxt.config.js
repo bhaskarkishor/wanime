@@ -1,11 +1,10 @@
 import colors from 'vuetify/es5/util/colors'
-import BASE_URL from './baseurl.js'
 
 export default {
   // Global page headers (https://go.nuxtjs.dev/config-head)
   buidlDir: 'dist',
   head: {
-    titleTemplate: '%s - wanime',
+    titleTemplate: '%s',
     title: 'wanime',
     meta: [
       { charset: 'utf-8' },
@@ -18,7 +17,7 @@ export default {
   },
 
   env: {
-    baseUrl: BASE_URL || 'http://localhost:3000'
+    baseUrl: process.env.BASE_URL || 'http://localhost:3000'
   },
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
