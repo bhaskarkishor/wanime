@@ -1,4 +1,4 @@
-<template>    
+<template>
   <v-card
     color="red lighten-2"
     dark
@@ -6,7 +6,7 @@
     <v-card-title class="headline red lighten-3">
       Search Your Favourite Anime
     </v-card-title>
-    
+
     <v-card-text>
       <v-autocomplete
         v-model="model"
@@ -58,7 +58,6 @@
 </template>
 
 <script>
-import debounce from 'debounce'
 
   export default {
     data: () => ({
@@ -127,7 +126,7 @@ import debounce from 'debounce'
     },
 
     methods: {
-      searchQuery: debounce( function(val){
+      searchQuery: function(val){
         // Items have already been loaded
         if (this.items.length > 0) return
 
@@ -158,7 +157,7 @@ import debounce from 'debounce'
             console.log(err)
           })
           .finally(() => (this.isLoading = false))
-      },1000)
+      }
     },
   }
 </script>

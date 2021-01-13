@@ -3,7 +3,7 @@ import BASE_URL from './baseurl.js'
 
 export default {
   // Global page headers (https://go.nuxtjs.dev/config-head)
-  buidlDir:'dist',
+  buidlDir: 'nuxt-dist',
   head: {
     titleTemplate: '%s - wanime',
     title: 'wanime',
