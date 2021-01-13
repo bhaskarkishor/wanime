@@ -64,7 +64,7 @@
 //import debounce from 'debounce'
 
 export default {
-  layout:'default2',
+  layout:'default',
   data: () => ({
     synopsisLimit: 200,
     searchResult: [],

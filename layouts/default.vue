@@ -5,11 +5,9 @@
       color="white"
       flat
     >
-      <!-- <v-app-bar-title class="font-weight-bold secondary--text">
-        <div class="text-decoration-underline">
-        WAnime
-        </div>
-      </v-app-bar-title> -->
+      <v-app-bar-title class="secondary--text">
+        <icon/>
+      </v-app-bar-title>
       <v-tabs
         centered
         class="ml-n9"
@@ -48,13 +46,12 @@
             cols="12"
             sm="8"
           >
-            <v-sheet
-              min-height="20vh"
-              rounded="lg"
-            >
+
+            <v-card color="secondary" min-height="20vh" rounded="lg" dark>
+
             <!-- NUXT -->
               <nuxt/>
-            </v-sheet>
+            </v-card>
           </v-col>
 
           <v-col
@@ -74,7 +71,11 @@
 </template>
 
 <script>
+import icon from '~/components/icon'
   export default {
+    components:{
+      icon
+    },
     data: () => ({
       links: [
         'Search'

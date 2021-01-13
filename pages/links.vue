@@ -23,7 +23,7 @@
 <script>
 
 export default {
-  layout:'default2',
+  layout:'default',
   data(){
     return {
       isLoading: true,
