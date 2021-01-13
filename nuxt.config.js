@@ -4,7 +4,7 @@ export default {
   // Global page headers (https://go.nuxtjs.dev/config-head)
   buidlDir: 'dist',
   head: {
-    titleTemplate: '%s',
+    titleTemplate: '%s | Watch your favorite anime',
     title: 'wanime',
     meta: [
       { charset: 'utf-8' },
