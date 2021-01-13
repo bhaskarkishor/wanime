@@ -15,9 +15,9 @@
         label="Type here"
         placeholder="Start typing to Search"
         prepend-icon="mdi-pokeball"
-        v-on:keyup.enter="searchQuery(searchText)"
+        v-on:keyup.enter="searchQuery"
       ></v-text-field>
-      <v-btn v-on:click="searchQuery(searchText)">Search</v-btn>
+      <v-btn v-on:click="searchQuery">Search</v-btn>
 
     </v-card-text>
     <v-divider></v-divider>
@@ -34,10 +34,10 @@
         >
           <v-list-item-content>
             <v-row>
-              <v-col cols="2">
+              <v-col cols="4" sm="2">
                 <v-img lazy-src="w.png" :src="item.image" height="100" width="100" />
               </v-col>
-              <v-col cols="10">
+              <v-col cols="8" sm="10">
                 <v-list-item-title v-text="item.title"></v-list-item-title>
                 <v-list-item-subtitle v-text="item.id"></v-list-item-subtitle>
               </v-col>
@@ -45,20 +45,18 @@
           </v-list-item-content>
         </v-list-item>
       </v-list>
+
     </v-expand-transition>
-    <!-- <v-card-actions>
-      <v-spacer></v-spacer>
-      <v-btn
-        :disabled="!model"
-        color="grey darken-3"
-        @click="model = null"
-      >
-        Clear
-        <v-icon right>
-          mdi-close-circle
-        </v-icon>
-      </v-btn>
-    </v-card-actions> -->
+    <v-card-actions v-show="nextPreviousVisibility">
+      <v-spacer/>
+        <v-btn :disabled="previousPageButton" @click="getPreviousResultPage">
+          <v-icon>mdi-chevron-left</v-icon>
+        </v-btn>
+        <v-btn :disabled="nextPageButton" @click="getNextResultPage">
+          <v-icon>mdi-chevron-right</v-icon>
+        </v-btn>
+        <v-spacer/>
+      </v-card-actions>
   </div>
 </template>
 
@@ -72,7 +70,7 @@ export default {
     searchResult: [],
     isLoading: false,
     resultPage:1,
-    searchText: null,
+    searchText: '',
   }),
 
 
@@ -84,6 +82,30 @@ export default {
         let id = entry.id
         return Object.assign( { id, title, image },)
       })
+    },
+    nextPreviousVisibility(){
+      if(this.searchResult.length===0){
+        return false
+      }
+      else{
+        return true
+      }
+    },
+    previousPageButton(){
+      if(this.resultPage>1){
+        return false
+      }
+      else{
+        return true
+      }
+    },
+    nextPageButton(){
+      if(this.searchResult.length<20){
+        return true
+      }
+      else{
+        return false
+      }
     }
   },
 
@@ -91,16 +113,13 @@ export default {
     path(val){
       return `${val.id}`
     },
-    searchQuery: function(val){
-
+    searchQuery: function(){
       // Items have already been requested
       if (this.isLoading) return
-
       this.isLoading = true
-
       console.info('fetching anime list ')
       // Lazily load input items
-      fetch(`/api/gogoanime/search/${val}/${this.resultPage}`,
+      fetch(`/api/gogoanime/search/${this.searchText}/${this.resultPage}`,
         {
           method:'GET',
           headers:{
@@ -117,7 +136,18 @@ export default {
           console.log(err)
         })
         .finally(() => (this.isLoading = false))
+    },
+    getPreviousResultPage(){
+      this.searchResult=[];
+      this.resultPage--;
+      this.searchQuery();
+    },
+    getNextResultPage(){
+      this.searchResult=[];
+      this.resultPage++;
+      this.searchQuery();
     }
+
   },
 }
 </script>
