@@ -1,13 +1,12 @@
 <template>
-<div>
-    <v-card-title class="headline red lighten-3">
+<v-container>
+    <v-card-title class="">
       Search Your Favourite Anime
     </v-card-title>
     <v-card-text>
       <v-text-field
         v-model="searchText"
         :loading="isLoading"
-        color="white"
         hide-no-data
         hide-selected
         autofocus
@@ -17,14 +16,14 @@
         prepend-icon="mdi-pokeball"
         v-on:keyup.enter="searchQuery"
       ></v-text-field>
-      <v-btn v-on:click="searchQuery">Search</v-btn>
+      <v-btn v-on:click="searchQuery" class="primary" text>Search</v-btn>
 
     </v-card-text>
     <v-divider></v-divider>
     <v-expand-transition>
       <v-list
         v-if="items"
-        class="red lighten-3"
+        class="secondary"
       >
         <v-list-item
           v-for="(item, i) in items"
@@ -57,7 +56,7 @@
         </v-btn>
         <v-spacer/>
       </v-card-actions>
-  </div>
+</v-container>
 </template>
 
 <script>
@@ -65,6 +64,14 @@
 
 export default {
   layout:'default',
+  head:{
+    title:'Search',
+    meta:[{
+      hid:'description',
+      name:'description',
+      content:'Search and stream your favorite anime on wanime.me, highest quality available, dubbed and subbed anime'
+    }]
+  },
   data: () => ({
     synopsisLimit: 200,
     searchResult: [],

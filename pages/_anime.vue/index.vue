@@ -1,20 +1,17 @@
 <template>
-  <v-card
-    color="secondary"
-    dark
-  >
-    <v-card-title class="accent">
+  <v-container>
+    <v-card-title class="secondary">
       {{results[0].title}}
     </v-card-title>
     <v-expand-transition>
-    <v-card-text class="accent">
+    <v-card-text class="secondary">
       <v-row>
         <v-col cols="12" sm="4" class="d-flex justify-content-center">
           <v-img :src="results[0].image" right height="300" width="300"/>
         </v-col>
         <v-col cols="12" sm="8">
           <v-list
-            class="accent">
+            class="secondary">
             <v-list-item
             v-for="(detail,i) in details"
             :key="i">
@@ -33,18 +30,17 @@
       </v-row>
     </v-card-text>
     </v-expand-transition>
-  </v-card>
+  </v-container>
 </template>
 
 <script>
 
 export default {
   data(){
-    return {
-    }
+    return { }
   },
   async asyncData({route}){
-    return await fetch(`/api/gogoanime/details/${route.params.anime}`,
+    let result = await fetch(`/api/gogoanime/details/${route.params.anime}`,
       {
         method:'GET',
         headers:{
@@ -52,15 +48,26 @@ export default {
           'Content-Type': 'application/vnd.api+json'
         }
       })
-      .then(res => res.json())
-      .then(res => {
-        console.log(res);
-        return res
-      })
-      .catch(err => {
-        console.log(err)
-      })
-      .finally(() => (console.log('finished')))
+      return result.json()
+      // .then(res => res.json())
+      // .then(res => {
+      //   console.log(res);
+      //   return res
+      // })
+      // .catch(err => {
+      //   console.log(err)
+      // })
+      // .finally(() => (console.log('finished')))
+  },
+  head(){
+    return{
+      title: this.results[0].title,
+      meta:[{
+        hid:'description',
+        name:'description',
+        content:this.results[0].summary
+      }]
+    }
   },
   methods:{
     stream_link(val){

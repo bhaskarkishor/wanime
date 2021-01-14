@@ -1,5 +1,12 @@
 <template>
   <v-container>
+    <h2>
+      Looking for Streaming links
+    </h2>
+    <v-divider></v-divider>
+    <h1>
+      {{$route.query.title}}
+      </h1>
     <div class="text-center" v-if="isLoading">
       <v-progress-circular
       indeterminate
@@ -7,9 +14,7 @@
     ></v-progress-circular>
     </div>
     <div v-else>
-      <h1>
-      {{$route.query.title}}
-      </h1>
+
 
       <v-list>
         <v-list-item v-for="(link,i) in streamingLinks" :key="i" v-on:click="play(link)">
@@ -24,6 +29,14 @@
 
 export default {
   layout:'default',
+  head:{
+    title:'Available links',
+    meta:[{
+      hid:'description',
+      name:'description',
+      content:'Available streaming links found on internet'
+    }]
+  },
   data(){
     return {
       isLoading: true,

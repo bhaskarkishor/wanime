@@ -5,30 +5,15 @@
       color="white"
       flat
     >
-      <v-app-bar-title class="secondary--text">
-
-      </v-app-bar-title>
-      <v-tabs
-        centered
-        class="ml-n9"
-        color="grey darken-1"
-      >
-        <v-tab
-          v-for="link in links"
-          :key="link"
-        >
-        <div v-if="$route.path=='/'">
-        Search
-        </div>
-        <div v-else>
+      <v-spacer/>
+      <nuxt-link to="/">
           <v-img to="/" src="w.png" alt="wanime" height="40" width="40"/>
-        </div>
-        </v-tab>
-      </v-tabs>
 
+      </nuxt-link>
+      <v-spacer/>
     </v-app-bar>
 
-    <v-main class="grey lighten-3">
+    <v-main class="accent">
       <v-container>
         <v-row>
           <v-col
@@ -45,8 +30,7 @@
             sm="8"
           >
 
-            <v-card color="secondary" min-height="20vh" rounded="lg" dark>
-
+            <v-card color="secondary" min-height="20vh" rounded="lg" flat dark>
             <!-- NUXT -->
               <nuxt/>
             </v-card>
@@ -65,6 +49,9 @@
         </v-row>
       </v-container>
     </v-main>
+    <footer class="text-center accent">
+      <span>WAnime &copy; {{ new Date().getFullYear() }}</span>
+    </footer>
   </v-app>
 </template>
 
@@ -81,3 +68,8 @@ import icon from '~/components/icon'
     }),
   }
 </script>
+<style scoped>
+li a {
+    text-decoration: none;
+}
+</style>

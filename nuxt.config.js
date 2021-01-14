@@ -4,12 +4,13 @@ export default {
   // Global page headers (https://go.nuxtjs.dev/config-head)
   buidlDir: 'dist',
   head: {
-    titleTemplate: '%s | Watch your favorite anime',
-    title: 'WAnime',
+    titleTemplate: '%s | WAnime - Watch your favorite anime',
+    title: '',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'wanime.me | watch and download your favorite anime | search online streaming links and resources' }
+      { hid: 'description', name: 'description', content: 'wanime.me | watch and download your favorite anime | search online streaming links and resources' },
+      { hid: 'description', name: 'description', content: 'dubbed and subbed ' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
@@ -49,9 +50,9 @@ export default {
       dark: false,
       themes: {
         dark: {
-          primary: colors.red.lighten1,
-          accent: colors.red.lighten3,
-          secondary: colors.red.lighten2,
+          primary: '#dc1354',
+          accent: colors.teal.lighten4,
+          secondary: colors.teal,
           info: colors.teal.lighten1,
           warning: colors.amber.base,
           error: colors.deepOrange.accent4,
@@ -59,9 +60,9 @@ export default {
 
         },
         light:{
-          primary: colors.red.lighten1,
-          accent: colors.red.lighten3,
-          secondary: colors.red.lighten2,
+          primary: '#dc1354',
+          accent: colors.teal.lighten4,
+          secondary: colors.teal,
           info: colors.teal.lighten1,
           warning: colors.amber.base,
           error: colors.deepOrange.accent4,
