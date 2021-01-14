@@ -5,11 +5,11 @@ export default {
   buidlDir: 'dist',
   head: {
     titleTemplate: '%s | Watch your favorite anime',
-    title: 'wanime',
+    title: 'WAnime',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' }
+      { hid: 'description', name: 'description', content: 'wanime.me | watch and download your favorite anime | search online streaming links and resources' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }

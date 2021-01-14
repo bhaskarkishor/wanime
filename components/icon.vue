@@ -1,10 +1,16 @@
 <template>
-  <h3><img style="vertical-align:top" src="w.png" alt="WA" height="40">nime</h3>
+<a :href="home">
+  <v-img src="wanime-logo.png" alt="wanime" height="50" width="250"/>
+</a>
 </template>
 
 <script>
 export default {
-
+  computed:{
+    home(){
+      return `${process.env.baseUrl}`
+    }
+  }
 }
 </script>
 

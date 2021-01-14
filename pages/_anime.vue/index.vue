@@ -19,8 +19,8 @@
             v-for="(detail,i) in details"
             :key="i">
               <v-list-item-content>
-                <v-list-item-title v-text="detail.key"></v-list-item-title>
-                <v-list-item-subtitle v-text="detail.value"></v-list-item-subtitle>
+                <v-list-item-title class="text-uppercase">{{detail.key}}</v-list-item-title>
+                {{detail.value}}
               </v-list-item-content>
             </v-list-item>
           </v-list>

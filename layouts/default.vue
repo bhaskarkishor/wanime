@@ -6,7 +6,7 @@
       flat
     >
       <v-app-bar-title class="secondary--text">
-        <icon/>
+
       </v-app-bar-title>
       <v-tabs
         centered
@@ -21,7 +21,7 @@
         Search
         </div>
         <div v-else>
-          <v-img src="w.png" height="40" width="40"/>
+          <v-img to="/" src="w.png" alt="wanime" height="40" width="40"/>
         </div>
         </v-tab>
       </v-tabs>
@@ -34,12 +34,10 @@
           <v-col
             cols="12"
             sm="2"
+            class="mx-auto" centered
           >
-            <v-sheet
-              rounded="lg"
-            >
-             <h1 align="center">WAnime</h1>
-            </v-sheet>
+            <v-img src="wanime-logo.png" alt="wanime" height="25" width="125"/>
+
           </v-col>
 
           <v-col
