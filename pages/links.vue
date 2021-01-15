@@ -17,8 +17,8 @@
 
 
       <v-list>
-        <v-list-item v-for="(link,i) in streamingLinks" :key="i" v-on:click="play(link)">
-          <v-list-item-action-text>{{link}}</v-list-item-action-text>
+        <v-list-item v-for="(link,i) in streamingLinks" :key="i" :to="go_to_player(link.link)">
+          <v-list-item-action-text>{{link.hostname}} - {{link.quality}}</v-list-item-action-text>
         </v-list-item>
       </v-list>
     </div>
@@ -45,10 +45,23 @@ export default {
   },
   computed:{
     streamingLinks(){
-      return this.data.links
+      return this.data.links.map(link =>{
+        return {
+          'link':link,
+          'hostname': new URL(link).hostname,
+          'quality': link.substr(link.lastIndexOf("/")+1,9)
+        }
+      })
     }
   },
   methods:{
+    go_to_player(link){
+      return `/stream?`+new URLSearchParams({
+        link: link,
+        title: this.$route.query.title,
+        episode: this.$route.query.episode
+      })
+    },
     play(link){
       window.open(link,'_blank')
     }
@@ -66,7 +79,7 @@ export default {
     .then(res => {
       this.isLoading = false
       console.log('Links from gogoanime',res)
-      this.data =  res
+      this.data = res;
     })
     .catch(err=>{
       console.log(err)

@@ -50,6 +50,7 @@
       </v-container>
     </v-main>
     <footer class="text-center accent">
+      <v-img class="mx-auto" src="w.png" alt="wanime" height="50" width="50"/>
       <span>WAnime &copy; {{ new Date().getFullYear() }}</span>
     </footer>
   </v-app>

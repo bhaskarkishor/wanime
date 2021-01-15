@@ -1,4 +1,11 @@
 <template>
+<div>
+  <v-card-title>
+    Watching {{$route.query.title}}
+  </v-card-title>
+  <v-card-subtitle>
+  <h3>Episode {{$route.query.episode}}</h3>
+  </v-card-subtitle>
     <videoPlayer  class="video-player-box"
                  ref="videoPlayer"
                  :options="playerOptions"
@@ -18,7 +25,7 @@
                  @statechanged="playerStateChanged($event)"
                  @ready="playerReadied">
   </videoPlayer>
-
+</div>
 </template>
 
 <script>
@@ -27,6 +34,11 @@ export default {
   layout:'default',
   components:{
     videoPlayer
+  },
+  head(){
+    return {
+      title: 'Watching '+ this.$route.query.title
+    }
   },
   data(){
     return {
