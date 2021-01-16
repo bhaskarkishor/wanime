@@ -10,7 +10,7 @@ export default {
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: 'wanime.me | watch and download your favorite anime | search online streaming links and resources' },
-      { hid: 'description', name: 'description', content: 'dubbed and subbed ' }
+      { hid: 'description', name: 'description', content: 'WAnime is a search tool which scraps the internet for links of hosted anime episode' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
@@ -23,25 +23,32 @@ export default {
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
+    {
+      src: './plugins/GoogleAnalytics.js',
+      mode: 'client'
+    }
   ],
-
   // Auto import components (https://go.nuxtjs.dev/config-components)
   components: true,
 
   // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
   buildModules: [
     // https://go.nuxtjs.dev/vuetify
-    '@nuxtjs/vuetify',
+    '@nuxtjs/vuetify'
   ],
-
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/pwa'
   ],
 
-  // Axios module configuration (https://go.nuxtjs.dev/config-axios)
-
+  pwa:{
+    manifest: {
+      name: 'WAnime',
+      lang: 'en',
+      useWebmanifestExtension: false
+    }
+  },
 
   // Vuetify module configuration (https://go.nuxtjs.dev/config-vuetify)
   vuetify: {
