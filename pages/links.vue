@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+   <v-card color="secondary" min-height="20vh" rounded="lg" flat dark>
     <h2>
       Looking for Streaming links
     </h2>
@@ -22,7 +22,7 @@
         </v-list-item>
       </v-list>
     </div>
-  </v-container>
+  </v-card>
 </template>
 
 <script>

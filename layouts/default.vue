@@ -21,7 +21,7 @@
             sm="2"
             class="mx-auto" centered
           >
-            <v-img src="wanime-logo.png" alt="wanime" height="25" width="125"/>
+            <!-- <v-img src="wanime-logo.png" alt="wanime" height="25" width="125"/> -->
 
           </v-col>
 
@@ -30,10 +30,8 @@
             sm="8"
           >
 
-            <v-card color="secondary" min-height="20vh" rounded="lg" flat dark>
             <!-- NUXT -->
               <nuxt/>
-            </v-card>
           </v-col>
 
           <v-col
@@ -49,18 +47,18 @@
         </v-row>
       </v-container>
     </v-main>
-    <footer class="text-center accent">
-      <v-img class="mx-auto" src="w.png" alt="wanime" height="50" width="50"/>
-      <span>WAnime &copy; {{ new Date().getFullYear() }}</span>
-    </footer>
+    <WAfooter/>
   </v-app>
 </template>
 
 <script>
 import icon from '~/components/icon'
+import WAfooter from '~/components/wafooter'
+
   export default {
     components:{
-      icon
+      icon,
+      WAfooter
     },
     data: () => ({
       links: [

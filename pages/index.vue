@@ -1,13 +1,16 @@
 <template>
 <v-container>
+  <v-card color="secondary" rounded="0" flat dark>
     <v-card-title class="">
       Search Your Favourite Anime
     </v-card-title>
     <v-card-text>
+      WAnime is a search tool to search for available streaming links on the internet. Wanime doesn't host the links, just searches and provides for streaming and downloading.
+    </v-card-text>
+    <v-container>
       <v-text-field
         v-model="searchText"
         :loading="isLoading"
-        hide-no-data
         hide-selected
         autofocus
         single-line
@@ -15,11 +18,16 @@
         placeholder="Start typing to Search"
         prepend-icon="mdi-pokeball"
         v-on:keyup.enter="searchQuery"
-      ></v-text-field>
-      <v-btn v-on:click="searchQuery" class="primary" text>Search</v-btn>
+        hide-no-data
+      >
+      <template slot="append-outer">
+        <v-btn v-on:click="searchQuery" class="primary" text>
+          Search
+        </v-btn>
+      </template>
+      </v-text-field>
 
-    </v-card-text>
-    <v-divider></v-divider>
+    </v-container>
     <v-expand-transition>
       <v-list
         v-if="items"
@@ -55,15 +63,20 @@
           <v-icon>mdi-chevron-right</v-icon>
         </v-btn>
         <v-spacer/>
-      </v-card-actions>
+    </v-card-actions>
+  </v-card>
+    <WApopular :popular-animes="results"/>
 </v-container>
 </template>
 
 <script>
 //import debounce from 'debounce'
-
+import WApopular from '~/components/wapopular'
 export default {
   layout:'default',
+  components:{
+    WApopular
+  },
   head:{
     title:'Search',
     meta:[{
@@ -80,6 +93,18 @@ export default {
     searchText: '',
   }),
 
+  async asyncData(){
+    let result = await fetch(`${process.env.baseUrl}/api/gogoanime/popular/1`,
+      {
+        method:'GET',
+        headers:{
+          'Accept': 'application/vnd.api+json',
+          'Content-Type': 'application/vnd.api+json'
+        }
+      })
+
+    return result.json()
+  },
 
   computed: {
     items () {
@@ -160,5 +185,7 @@ export default {
 </script>
 
 <style>
-
+.v-input__append-outer{
+  margin-top:0;
+}
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+   <v-card color="secondary" min-height="20vh" rounded="lg" flat dark>
     <v-card-title class="secondary">
       {{results[0].title}}
     </v-card-title>
@@ -30,7 +30,7 @@
       </v-row>
     </v-card-text>
     </v-expand-transition>
-  </v-container>
+  </v-card>
 </template>
 
 <script>

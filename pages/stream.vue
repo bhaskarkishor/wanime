@@ -1,5 +1,5 @@
 <template>
-<div>
+<v-card color="secondary" min-height="20vh" rounded="lg" flat dark>
   <v-card-title>
     Watching {{$route.query.title}}
   </v-card-title>
@@ -25,7 +25,7 @@
                  @statechanged="playerStateChanged($event)"
                  @ready="playerReadied">
   </videoPlayer>
-</div>
+</v-card>
 </template>
 
 <script>
