@@ -18,7 +18,7 @@ export default {
   },
 
   env: {
-    baseUrl: process.env.BASE_URL || 'http://localhost:3000'
+    baseUrl: process.env.NODE_ENV === 'dev'? 'http://localhost:3000' : 'https://wanime.me'
   },
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
