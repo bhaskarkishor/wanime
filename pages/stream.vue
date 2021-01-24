@@ -1,31 +1,37 @@
 <template>
-<v-card color="secondary" min-height="20vh" rounded="lg" flat dark>
-  <v-card-title>
-    Watching {{$route.query.title}}
-  </v-card-title>
-  <v-card-subtitle>
-  <h3>Episode {{$route.query.episode}}</h3>
-  </v-card-subtitle>
-    <videoPlayer  class="video-player-box"
-                 ref="videoPlayer"
-                 :options="playerOptions"
-                 :playsinline="true"
-                 customEventName="customstatechangedeventname"
+<v-container>
+  <v-card color="secondary" min-height="20vh" rounded="lg" flat dark>
+    <v-card-title>
+      Watching {{$route.query.title}}
+    </v-card-title>
+    <v-card-subtitle>
+    <h3>Episode {{$route.query.episode}}</h3>
+    </v-card-subtitle>
+    <v-card-text>
+      This video is found on {{$store.state.currentAnime.streamingSource}}.
+    </v-card-text>
+      <videoPlayer  class="video-player-box"
+                  ref="videoPlayer"
+                  :options="playerOptions"
+                  :playsinline="true"
+                  customEventName="customstatechangedeventname"
 
-                 @play="onPlayerPlay($event)"
-                 @pause="onPlayerPause($event)"
-                 @ended="onPlayerEnded($event)"
-                 @waiting="onPlayerWaiting($event)"
-                 @playing="onPlayerPlaying($event)"
-                 @loadeddata="onPlayerLoadeddata($event)"
-                 @timeupdate="onPlayerTimeupdate($event)"
-                 @canplay="onPlayerCanplay($event)"
-                 @canplaythrough="onPlayerCanplaythrough($event)"
+                  @play="onPlayerPlay($event)"
+                  @pause="onPlayerPause($event)"
+                  @ended="onPlayerEnded($event)"
+                  @waiting="onPlayerWaiting($event)"
+                  @playing="onPlayerPlaying($event)"
+                  @loadeddata="onPlayerLoadeddata($event)"
+                  @timeupdate="onPlayerTimeupdate($event)"
+                  @canplay="onPlayerCanplay($event)"
+                  @canplaythrough="onPlayerCanplaythrough($event)"
 
-                 @statechanged="playerStateChanged($event)"
-                 @ready="playerReadied">
-  </videoPlayer>
-</v-card>
+                  @statechanged="playerStateChanged($event)"
+                  @ready="playerReadied">
+    </videoPlayer>
+  </v-card>
+  <p>Disclaimer: This video is not hosted by WAnime.</p>
+</v-container>
 </template>
 
 <script>

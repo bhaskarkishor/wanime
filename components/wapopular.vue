@@ -4,7 +4,8 @@
     <v-col v-for="(anime,i) in popularAnimes" :key="i" cols="12" sm="4">
       <v-card
         :to="anime.id" router
-        max-width="300">
+        max-width="300"
+        class="mx-auto">
         <v-img
           class="white--text align-end"
           lazy-src="/w.png"

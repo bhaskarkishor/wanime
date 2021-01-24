@@ -1,12 +1,12 @@
 <template>
    <v-card color="secondary" min-height="20vh" rounded="lg" flat dark>
-    <h2>
+    <v-card-title>
       Looking for Streaming links
-    </h2>
+    </v-card-title>
     <v-divider></v-divider>
-    <h1>
+    <v-card-subtitle>
       {{$route.query.title}}
-      </h1>
+    </v-card-subtitle>
     <div class="text-center" v-if="isLoading">
       <v-progress-circular
       indeterminate
@@ -17,7 +17,7 @@
 
 
       <v-list>
-        <v-list-item v-for="(link,i) in streamingLinks" :key="i" :to="go_to_player(link.link)">
+        <v-list-item v-for="(link,i) in streamingLinks" :key="i" v-on:click="go_to_player(link.link)">
           <v-list-item-action-text>{{link.hostname}} - {{link.quality}}</v-list-item-action-text>
         </v-list-item>
       </v-list>
@@ -56,11 +56,20 @@ export default {
   },
   methods:{
     go_to_player(link){
-      return `/stream?`+new URLSearchParams({
+      let uri = link.split('?')[0];
+      console.log(uri.slice(-3));
+      if(uri.slice(-3)==='mp4'){
+        let url = `/stream?`+new URLSearchParams({
         link: link,
         title: this.$route.query.title,
         episode: this.$route.query.episode
-      })
+      });
+      this.$store.commit('ADD_STREAMING_SOURCE',new URL(link).hostname);
+      this.$router.push(url);
+      }
+      else{
+        window.open(link,'_blank');
+      }
     },
     play(link){
       window.open(link,'_blank')

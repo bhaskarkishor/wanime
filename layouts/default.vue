@@ -38,11 +38,8 @@
             cols="12"
             sm="2"
           >
-            <v-sheet
-              rounded="lg"
-            >
-              <!--  -->
-            </v-sheet>
+            <feedback/>
+
           </v-col>
         </v-row>
       </v-container>
@@ -52,13 +49,13 @@
 </template>
 
 <script>
-import icon from '~/components/icon'
 import WAfooter from '~/components/wafooter'
+import feedback from '~/components/wafeedback.vue'
 
   export default {
     components:{
-      icon,
-      WAfooter
+      WAfooter,
+      feedback
     },
     data: () => ({
       links: [
