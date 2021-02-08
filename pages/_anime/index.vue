@@ -23,7 +23,7 @@
           </v-list>
           <v-list>
             <v-list-item v-for="i in episodes" :key="i" :to="stream_link(i)" router>
-              <v-list-item-action>Episode- {{episodes - i + 1}}</v-list-item-action>
+              <v-list-item-action>Episode- {{i}}</v-list-item-action>
             </v-list-item>
           </v-list>
         </v-col>

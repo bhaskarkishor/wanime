@@ -1,19 +1,74 @@
 import colors from 'vuetify/es5/util/colors'
 
 export default {
-  // Global page headers (https://go.nuxtjs.dev/config-head)
   buidlDir: 'dist',
   head: {
-    titleTemplate: '%s | WAnime - Watch your favorite anime',
-    title: '',
+    titleTemplate: '%s | Watch your favorite anime',
+    title: 'WAnime',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'wanime.me | watch and download your favorite anime | search online streaming links and resources' },
-      { hid: 'description', name: 'description', content: 'WAnime is a search tool which scraps the internet for links of hosted anime episode' }
+      {
+        hid:'description',
+        name:'description',
+        content:'Search and stream your favorite anime on wanime.me, highest quality available, dubbed and subbed anime. WAnime has free anime online in SUB and DUB HD. WAnime has 11,000+ Anime. Watch and download WAnime free without Registration.'
+      },
+      {
+        name:'robots',
+        content:'index,follow'
+      },
+      {
+        name:'revisit-after',
+        content:'1 days'
+      },
+      {
+        name:'Referrer',
+        content:'origin'
+      },
+      {
+        property:'og:url',
+        content:'https://wanime.me'
+      },
+      {
+        property:'og:title',
+        content:'WAnime - Watch download Anime Online English Sub and Dub'
+      },
+      {
+        property:'og:description',
+        content:'WAnime has free anime online in SUB and DUB HD. WAnimes has 11,000+ Anime. Watch and download WAnime free without Registration.'
+      },
+      {
+        property:'og:site_name',
+        content:'Wanime'
+      },
+      {
+        property:'og:type',
+        content:'website'
+      },
+      {
+        property:'og:locale',
+        content:"en"
+      },
+      {
+        property:"og:image",
+        content:'https://wanime.me/icon.png'
+      },
+      {
+        property:'og:type',
+        content:'image/png'
+      },
+      {
+        'http-equiv':'content-language',
+        content:'en'
+      },
+      {
+        name:'mobile-web-app-capable',
+        content:'yes'
+      }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'canonical', href:'https://wanime.me'}
     ]
   },
 

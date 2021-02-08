@@ -7,21 +7,18 @@
       flat
       tile
       width="100%"
-      class="secondary"
+      class="secondary text-center"
     >
 
-      <div class="white--text text-center mt-5" >
-        <v-img src="wanime-logo.png" alt="wanime" height="25" width="125" class="mx-auto"/>
-          <nuxt-link class="text-decoration-none mx-3 white--text" to="/about">About</nuxt-link>
-          <nuxt-link class="text-decoration-none mx-3 white--text" to="/sitemap">Sitemap</nuxt-link>
-          <nuxt-link class="text-decoration-none mx-3 white--text" to="/termsandconditions">Terms & Conditions</nuxt-link>
-        </div>
-
+      <v-img src="icon.png" alt="wanime" height="50" width="50" class="mx-auto" />
       <v-divider></v-divider>
-
       <v-card-text class="text-center white--text">
-        <strong>WAnime</strong> &copy; {{ new Date().getFullYear() }}
+
+        <nuxt-link class="text-decoration-none mx-3 white--text" v-for="(link,i) in links" :key="i" :to="link.url">{{link.text}}</nuxt-link>
       </v-card-text>
+      <v-card-subtitle>
+        <strong>WAnime</strong> &copy; {{ new Date().getFullYear() }}
+      </v-card-subtitle>
     </v-card>
   </v-footer>
 
@@ -29,7 +26,24 @@
 
 <script>
 export default {
-
+  data(){
+    return {
+      links:[
+        {
+          text:'About',
+          url:'/about'
+        },
+        {
+          text:'Privacy Policy',
+          url:'/policy'
+        },
+        {
+          text:'Sitemap',
+          url:'/sitemap'
+        }
+      ]
+    }
+  }
 }
 </script>
 

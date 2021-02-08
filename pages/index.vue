@@ -78,12 +78,10 @@ export default {
     WApopular
   },
   head:{
-    title:'Search',
-    meta:[{
-      hid:'description',
-      name:'description',
-      content:'Search and stream your favorite anime on wanime.me, highest quality available, dubbed and subbed anime'
-    }]
+    title:'Search Your Anime',
+    meta:[
+
+    ]
   },
   data: () => ({
     synopsisLimit: 200,
